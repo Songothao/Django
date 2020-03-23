@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Page</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+</head>
+<body>
+<form action="{% url 'blog:edit_action' %}" method="post">
+    {% csrf_token %}    {#  防止网站受到攻击，所有的post表单都要加上这行  #}
+
+        <input type="hidden" name="article_id" value="{{ article.id | default:'0' }}"/>
+        <div>
+            <div>文章标题</div>
+            <input type="text" name="title" value="{{ article.title }}"/>
+        </div>
+        <div>
+            <div>文章内容</div>
+            <input type="text" name="content" value="{{ article.content }}"/>
+        </div>
+    <div>
+        <input type="submit" value="提交" />
+    </div>
+</form>
+</body>
+</html>
